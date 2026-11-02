@@ -167,10 +167,13 @@ The program saves the collected findings and webpage inspection results into `di
 
 ## Current Results and Verification
 
-The research workflow has been successfully executed using Clark County, Washington, as the target location.
-
-### Required packages
-- Python 3
-- Ollama installed and running
-- Qwen3:8b downloaded through Ollama
-- Internet connection for searching and fetching webpages
+| Check | Expected Result | Observed Result | Conclusion |
+| :--- | :--- | :--- | :--- |
+| **Normal: Generate search queries** | Qwen generates 8 relevant search queries for Clark County, Washington. | Qwen generated 8 queries targeting transportation departments, public CCTV, GIS portals, and ALPR cameras. | **Pass:** All 8 queries were generated. |
+| **Normal: Execute internet searches** | DuckDuckGo returns relevant search results and duplicate URLs are removed. | The program collected 22 unique search results from 8 queries. | **Pass:** Search results were collected and deduplicated. |
+| **Normal: Identify candidate sources** | Qwen analyzes search result metadata and identifies potentially useful sources. | Qwen identified 5 candidate websites from the 22 search results. | **Pass:** Candidate sources were generated, but their relevance requires further verification. |
+| **Normal: Inspect webpages** | The program retrieves webpage contents and analyzes them using Qwen. | Several webpages returned readable text, including one with 4,223 characters. | **Pass:** Webpage retrieval and inspection worked for supported pages. |
+| **Edge case: Search returns no results** | The program handles an unsuccessful search without stopping the workflow. | One search returned "Search failed: No results found." The program continued executing subsequent searches. | **Pass:** The workflow continued despite the unsuccessful search. |
+| **Failure: Website retrieval error** | The program handles connection errors without crashing. | One website returned an SSL error (`WRONG_VERSION_NUMBER`). The program continued inspecting other sources. | **Pass:** The error was handled, although the website could not be inspected. |
+| **Limitation: Limited webpage content** | The program retrieves enough content for meaningful inspection. | An ArcGIS open-data portal returned only 34 characters. | **Limitation:** Some websites do not expose useful content through basic HTML retrieval. |
+| **Normal: Export findings** | Research findings and inspection results are saved to a JSON file. | `discovered_sources.json` was generated and contained the new inspection objects. | **Pass:** Research findings were exported successfully. |
