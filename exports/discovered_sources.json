@@ -1,0 +1,148 @@
+{
+    "research_location": {
+        "state": "Washington",
+        "county": "Clark"
+    },
+    "research_date": "2026-11-02T06:16:34.664258+00:00",
+    "search_queries": [
+        "Washington State Department of Transportation Clark County traffic monitoring cameras",
+        "Clark County Washington transportation department traffic enforcement camera inventory",
+        "Vancouver WA open data traffic cameras Flock ALPR",
+        "Clark County Sheriff's Office public CCTV camera locations",
+        "Washington State GIS Clark County red-light camera layers",
+        "ArcGIS public camera dataset Clark County WA traffic enforcement",
+        "Clark County WA police department ALPR camera API documentation",
+        "Washington State Department of Transportation public camera API traffic monitoring"
+    ],
+    "total_search_results": 20,
+    "total_candidate_sources": 6,
+    "sources": [
+        {
+            "name": "Traffic Cameras - Clark County",
+            "url": "https://clark.wa.gov/public-works/traffic-cameras",
+            "description": "Official government website describing traffic camera infrastructure in Clark County, including locations and purposes.",
+            "camera_categories": [
+                "Traffic monitoring"
+            ],
+            "source_type": "website",
+            "confidence": "High",
+            "verification_status": "Page inspected",
+            "inspection": {
+                "camera_data_evidence": "Yes",
+                "dataset_or_api_mentioned": "No",
+                "coordinates_available": "Yes",
+                "heading_available": "No",
+                "camera_categories": [
+                    "Traffic Signals"
+                ],
+                "findings": "The page confirms Clark County operates traffic cameras at signalized intersections, provides locations with intersection corners, but does not mention datasets, APIs, or camera directions."
+            },
+            "inspected_url": "https://clark.wa.gov/public-works/traffic-cameras",
+            "page_content_truncated": false
+        },
+        {
+            "name": "Traffic Cameras in Clark County",
+            "url": "https://clark.wa.gov/public-works/traffic",
+            "description": "Government resource detailing traffic camera operations and public access to camera feeds.",
+            "camera_categories": [
+                "Traffic monitoring"
+            ],
+            "source_type": "website",
+            "confidence": "High",
+            "verification_status": "Page inspected",
+            "inspection": {
+                "camera_data_evidence": "Yes",
+                "dataset_or_api_mentioned": "Unclear",
+                "coordinates_available": "Unclear",
+                "heading_available": "No",
+                "camera_categories": [
+                    "Signalized Intersections"
+                ],
+                "findings": "The page mentions traffic cameras at signalized intersections but does not provide specific datasets, APIs, coordinates, or headings. It references MapsOnline for traffic counts, which may not directly relate to camera data."
+            },
+            "inspected_url": "https://clark.wa.gov/public-works/traffic",
+            "page_content_truncated": false
+        },
+        {
+            "name": "Washington State Department of Transportation",
+            "url": "https://wsdot.wa.gov/",
+            "description": "State agency offering real-time traffic data and camera feeds, though not explicitly limited to Clark County.",
+            "camera_categories": [
+                "Traffic monitoring"
+            ],
+            "source_type": "website",
+            "confidence": "Medium",
+            "verification_status": "Page inspected",
+            "inspection": {
+                "camera_data_evidence": "Yes",
+                "dataset_or_api_mentioned": "Unclear",
+                "coordinates_available": "No",
+                "heading_available": "No",
+                "camera_categories": [
+                    "Roads",
+                    "Ferries",
+                    "Aircraft"
+                ],
+                "findings": "The page mentions live cameras for roads, ferries, and aircraft but does not specify datasets, APIs, or coordinates."
+            },
+            "inspected_url": "https://wsdot.wa.gov/",
+            "page_content_truncated": true
+        },
+        {
+            "name": "Flock Camera Locations in Vancouver, WA",
+            "url": "https://flockcameralocations.com/locations/washington/vancouver",
+            "description": "Third-party site listing Flock Safety cameras and ALPRs in Vancouver, Clark County.",
+            "camera_categories": [
+                "Flock / ALPR"
+            ],
+            "source_type": "website",
+            "confidence": "Medium",
+            "verification_status": "Page inspected",
+            "inspection": {
+                "camera_data_evidence": "Yes",
+                "dataset_or_api_mentioned": "Unclear",
+                "coordinates_available": "Unclear",
+                "heading_available": "No",
+                "camera_categories": [
+                    "Flock Safety",
+                    "Automated License Plate Reader (ALPR)"
+                ],
+                "findings": "The page lists camera locations and operators, but does not confirm dataset/API, coordinates, or headings."
+            },
+            "inspected_url": "https://flockcameralocations.com/locations/washington/vancouver",
+            "page_content_truncated": false
+        },
+        {
+            "name": "Washington State Geospatial Open Data Portal",
+            "url": "https://geo.wa.gov/",
+            "description": "Statewide GIS portal potentially containing red-light camera data, though not explicitly confirmed.",
+            "camera_categories": [
+                "Red-light"
+            ],
+            "source_type": "GIS portal",
+            "confidence": "Medium",
+            "verification_status": "Page inspected",
+            "inspection": {
+                "camera_data_evidence": "Unclear",
+                "dataset_or_api_mentioned": "Unclear",
+                "coordinates_available": "Unclear",
+                "heading_available": "Unclear",
+                "camera_categories": [],
+                "findings": "The page title suggests a geospatial open data portal, but no specific camera data, datasets, APIs, coordinates, headings, or categories are mentioned in the provided text."
+            },
+            "inspected_url": "https://geo.wa.gov/",
+            "page_content_truncated": false
+        },
+        {
+            "name": "Clark County, Washington Open Data - ArcGIS",
+            "url": "https://hub-clarkcountywa.opendata.arcgis.com/",
+            "description": "Open data hub potentially containing public camera datasets, though not explicitly confirmed.",
+            "camera_categories": [
+                "Traffic enforcement"
+            ],
+            "source_type": "GIS portal",
+            "confidence": "Medium",
+            "verification_status": "Unverified candidate"
+        }
+    ]
+}

@@ -22,15 +22,155 @@ I will prioritize understanding how AI agents operate under the hood. I want to 
 Create an AI agent to choose and execute various internet searches to find possible candidate websites for traffic camera data, possibly formatting the data into JSON or CSV format.
 
 ### Tools and data: What do you need, and where will it come from?
-**Ollama** Useful for local development of AI agents. Also free to use. 
+- **Python:** Primary programming language used to develop the research workflow and integrate the different components.
+- **Ollama:** Allows large language models to run locally without requiring a paid API.
+- **Qwen3:8b:** Local language model used to generate search queries and analyze potential sources.
+- **DuckDuckGo (`ddgs`):** Provides internet search functionality without requiring an API key.
+- **Requests:** Python library used to retrieve webpage content.
+- **BeautifulSoup:** Parses HTML and extracts readable text from websites.
+- **JSON:** Used to store structured research findings.
 
 ### Verification: How will you check your result or explanation?
 AI agent results will be verified through cross referencing, ensuring the links or data that the model returns are accurate and up-to-date.
 
 ## File Descriptions
-./ --> Project root
-./README.md --> Project description, scope, evidence, verification record, reflections, etc.
+```text
+.
+├── agent/
+│   └── researcher.py
+├── tools/
+│   ├── web_search.py
+│   └── web_fetch.py
+├── exports/
+│   ├── discovered_sources.json
+│   ├── cameras.json
+│   └── cameras.csv
+├── database/
+├── main.py
+├── requirements.txt
+└── README.md
+```
+**`agent/researcher.py`**
+
+Contains the main research workflow. Uses Qwen through Ollama to generate search queries, analyze search results, identify candidate websites, and examine downloaded webpage content.
+
+**`tools/web_search.py`**
+
+Uses DuckDuckGo to perform internet searches. Returns structured search results containing titles, URLs, snippets, and the original search queries.
+
+**`tools/web_fetch.py`**
+
+Retrieves webpage content using Requests and extracts readable text using BeautifulSoup.
+
+**`exports/discovered_sources.json`**
+
+Stores research results, including the research location, search queries, candidate websites, and webpage inspection findings.
+
+**`exports/cameras.json` and `exports/cameras.csv`**
+
+Reserved for future exports of actual camera data. The current implementation does not populate these files.
+
+**`database/`**
+
+Reserved for future storage and management of collected camera information.
+
+**`main.py`**
+
+Entry point for the program. Specifies the research location and starts the workflow.
+
+**`requirements.txt`**
+
+Lists the required Python packages.
 
 ## Instructions
 
+Install dependencies using:
+
+```bash
+pip install -r requirements.txt
+```
+### Ollama Setup
+
+Install Ollama from https://ollama.com.
+
+Download the Qwen3:8b model:
+
+```bash
+ollama pull qwen3:8b
+```
+
+Ensure Ollama is running before executing the research program.
+
+### Running the Program
+
+Open `main.py` and specify a research location:
+
+```python
+from agent.researcher import run_research
+
+if __name__ == "__main__":
+    run_research(
+        state="Washington",
+        county="Clark"
+    )
+```
+
+Run the program from the project root:
+
+```bash
+python main.py
+```
+
+The program will generate searches for the selected location, identify potentially useful websites, inspect selected pages, and save its findings.
+
+### Output
+
+Research findings are saved to:
+
+```text
+exports/discovered_sources.json
+```
+
+The JSON file contains:
+- Research location and date.
+- Generated search queries.
+- Number of search results and candidate sources.
+- Selected source names and URLs.
+- Source descriptions and confidence ratings.
+- Webpage inspection results, where available.
+- Indications of whether datasets, APIs, coordinates, or camera headings are mentioned.
+
+## How the Research Workflow Operates
+
+The current implementation consists of five stages.
+
+### Stage 1 — Query Generation
+The program sends the research location and camera categories to Qwen. The model generates eight targeted search queries intended to discover relevant government resources, datasets, and APIs.
+
+### Stage 2 — Internet Search
+Python executes each generated query using DuckDuckGo, retrieving up to five results per query. Duplicate URLs are removed.
+
+Each result contains the webpage title, URL, search snippet, and associated query.
+
+### Stage 3 — Source Analysis
+Qwen receives the search results and evaluates which websites appear potentially useful based on their titles, URLs, and snippets.
+
+The model returns a list of candidate sources. Python validates these URLs against the original search results to prevent the model from introducing unsupported links.
+
+### Stage 4 — Webpage Inspection
+The program selects up to five candidate sources and retrieves their webpage contents.
+
+Qwen then analyzes the extracted text to determine whether the webpages provide evidence of camera data, datasets, APIs, camera coordinates, or viewing directions.
+
+### Stage 5 — Export Results
+The program saves the collected findings and webpage inspection results into `discovered_sources.json`.
+
+## Current Results and Verification
+
+The research workflow has been successfully executed using Clark County, Washington, as the target location.
+
 ### Required packages
+- Python 3
+- Ollama installed and running
+- Qwen3:8b downloaded through Ollama
+- Internet connection for searching and fetching webpages
